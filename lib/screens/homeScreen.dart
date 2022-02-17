@@ -47,7 +47,7 @@ class _homeScreenState extends State<homeScreen> {
             ),
             SizedBox( height: MediaQuery.of(context).size.height / 2.5,),
             Button(background: AppColors.mainColor, text: "Add Task", textColor: Colors.white),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             Button(background: Colors.white, text: "View All", textColor: AppColors.smallTextColor)
           ],
         ),
