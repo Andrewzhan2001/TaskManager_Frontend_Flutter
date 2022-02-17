@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/component/button.dart';
 import 'package:taskmanager/component/inputField.dart';
 import 'package:taskmanager/utils/appColors.dart';
 
@@ -56,7 +57,7 @@ class _AddTaskState extends State<AddTask> {
                 const SizedBox(
                   height: 20,
                 ),
-
+                Button(background: AppColors.mainColor, text: "Add task", textColor: Colors.white)
               ],
             ),
             SizedBox( // push the text field above
