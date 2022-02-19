@@ -21,9 +21,9 @@ class _AddTaskState extends State<AddTask> {
         height: double.maxFinite,
         padding: const EdgeInsets.only(left: 20, right: 20),
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fitWidth,
-                image: AssetImage("assets/addtask1.jpg"))),
+          image: DecorationImage(
+            fit: BoxFit.fitWidth,
+            image: AssetImage("assets/addtask1.jpg"))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
