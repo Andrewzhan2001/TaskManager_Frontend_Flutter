@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:taskmanager/component/button.dart';
 import 'package:taskmanager/component/inputField.dart';
 import 'package:taskmanager/utils/appColors.dart';
@@ -32,7 +33,9 @@ class _AddTaskState extends State<AddTask> {
             Column(children: [
               SizedBox(height: 40),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.back();
+                  },
                   icon: Icon(
                     Icons.arrow_back,
                     color: AppColors.secondaryColor,
