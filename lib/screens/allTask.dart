@@ -4,11 +4,14 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:taskmanager/component/button.dart';
 import 'package:taskmanager/component/task.dart';
+import 'package:taskmanager/controller/controller.dart';
 import 'package:taskmanager/utils/appColors.dart';
 
 class AllTask extends StatefulWidget {
   const AllTask({Key? key}) : super(key: key);
-
+  loadData() async {
+    await Get.find<DataController>().getAllTasks();
+  }
   @override
   State<AllTask> createState() => _AllTaskState();
 }
@@ -16,7 +19,7 @@ class AllTask extends StatefulWidget {
 class _AllTaskState extends State<AllTask> {
   @override
   Widget build(BuildContext context) {
-    List myData = ["Try harder", "Try smarter"];
+    List<dynamic> myData = Get.find<DataController>().myData;
     final leftIcon = Container(
       margin: const EdgeInsets.only(bottom: 10),
       color: const Color(0xFF2e3253).withOpacity(0.5),
@@ -134,7 +137,7 @@ class _AllTaskState extends State<AllTask> {
                         margin: const EdgeInsets.only(
                             left: 20, right: 20, bottom: 10),
                         child: Task(
-                          text: myData[index], //controller.myData[index]["get_task"],
+                          text: myData[index]["taskName"],
                           color: Colors.blueGrey,
                         ),
                       ),

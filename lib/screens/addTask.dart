@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taskmanager/component/button.dart';
+import 'package:taskmanager/component/errorMessage.dart';
 import 'package:taskmanager/component/inputField.dart';
+import 'package:taskmanager/controller/controller.dart';
+import 'package:taskmanager/screens/allTask.dart';
 import 'package:taskmanager/utils/appColors.dart';
 
 class AddTask extends StatefulWidget {
@@ -16,6 +19,27 @@ class _AddTaskState extends State<AddTask> {
   Widget build(BuildContext context) {
     TextEditingController nameController = TextEditingController();
     TextEditingController detailController = TextEditingController();
+
+    bool validation() {
+      if (nameController.text.trim() == '') {
+        Message.taskError("Task Title", "Please add your task title");
+        return false;
+      } else if (detailController.text.trim() == '') {
+        Message.taskError(
+            "Task detail", "Please add your task details");
+        return false;
+      } else if (nameController.text.length < 10) {
+        Message.taskError(
+            "Task Title", "Task title should have 10 or more characters");
+        return false;
+      } else if (detailController.text.length < 10) {
+        Message.taskError(
+            "Task details", "Task details should have 10 or more characters");
+        return false;
+      }
+      return true;
+    }
+
     return Scaffold(
       body: Container(
         width: double.maxFinite,
@@ -60,7 +84,18 @@ class _AddTaskState extends State<AddTask> {
                 const SizedBox(
                   height: 20,
                 ),
-                Button(background: AppColors.mainColor, text: "Add task", textColor: Colors.white)
+                GestureDetector(
+                  onTap: () {
+                    if (validation()) {
+                      Get.find<DataController>().postData(nameController.text.trim(),detailController.text.trim());
+                      Get.to(() => AllTask(),transition: Transition.circularReveal);
+                    }
+                  },
+                  child: Button(
+                      background: AppColors.mainColor,
+                      text: "Add task",
+                      textColor: Colors.white),
+                )
               ],
             ),
             SizedBox( // push the text field above
