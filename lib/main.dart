@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/controller/controller.dart';
 import 'package:taskmanager/screens/addTask.dart';
 import 'package:taskmanager/screens/allTask.dart';
 import 'package:taskmanager/screens/homeScreen.dart';
@@ -10,10 +11,14 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  loadTasks() async {
+    await Get.find<DataController>().getAllTasks();
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => DataController());
+    loadTasks();
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
