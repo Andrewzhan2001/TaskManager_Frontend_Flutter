@@ -1,6 +1,9 @@
 
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:taskmanager/service/service.dart';
+import 'package:taskmanager/utils/constants.dart';
 
 class DataController extends GetxController {
   DataService service = DataService();
@@ -8,9 +11,10 @@ class DataController extends GetxController {
   bool get isLoading => _isLoading;
   List<dynamic> _myData = [];
   List<dynamic> get myData => _myData;
-
+  Map<String, dynamic> _singleTask = {};
+  Map<String, dynamic> get singleTask => _singleTask;
   Future<void> getAllTasks() async {
-    Response response = await service.getAllTasks();
+    Response response = await service.getData(appConstants.getAllTasks);
     if (response.statusCode == 200) {
       _myData = response.body;
       print("Get data from server");
@@ -20,9 +24,19 @@ class DataController extends GetxController {
     }
   }
 
-  Future<void> postData(String task, String taskDetail) async {
+  Future<void> getTask(String id) async {
+    Response response = await service.getData("${appConstants.getTask}"+id);
+    if (response.statusCode == 200) {
+      _singleTask = jsonDecode(response.body);
+      update();
+    } else {
+      print("Something wrong happen to this task");
+    }
+  }
+
+  Future<void> createTask(String task, String taskDetail) async {
     _isLoading = true;
-    Response response = await service.createTask({"taskName": task, "taskDetail": taskDetail});
+    Response response = await service.postData(appConstants.createTask, {"taskName": task, "taskDetail": taskDetail});
     if (response.statusCode == 200) {
       _myData = response.body;
       update();

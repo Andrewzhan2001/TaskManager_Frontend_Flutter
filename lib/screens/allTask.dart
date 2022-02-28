@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:taskmanager/component/button.dart';
 import 'package:taskmanager/component/task.dart';
 import 'package:taskmanager/controller/controller.dart';
+import 'package:taskmanager/screens/taskDetail.dart';
 import 'package:taskmanager/utils/appColors.dart';
 
 class AllTask extends StatefulWidget {
@@ -38,6 +39,7 @@ class _AllTaskState extends State<AllTask> {
       ),
       alignment: Alignment.centerRight,
     );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -80,7 +82,7 @@ class _AllTaskState extends State<AllTask> {
                 Expanded(child: Container()),
                 Icon(Icons.calendar_month, color: AppColors.secondaryColor),
                 SizedBox( width: 20 ),
-                Text( "2", style: TextStyle(fontSize: 20, color: AppColors.secondaryColor),)
+                Text( "${myData.length}", style: TextStyle(fontSize: 20, color: AppColors.secondaryColor),)
               ]
             ),
           ),
@@ -112,16 +114,26 @@ class _AllTaskState extends State<AllTask> {
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Button(
-                                            background: AppColors.mainColor,
-                                            text: "View the details",
-                                            textColor: Colors.white,
+                                          InkWell(
+                                            onTap: () {
+                                              Get.off(()=>TaskDetail(id: myData[index]["id"].toString()),transition: Transition.zoom);
+                                            },
+                                            child: Button(
+                                                background:
+                                                AppColors.mainColor,
+                                                text: "View",
+                                                textColor: Colors.white),
                                           ),
-                                          SizedBox(height: 20),
-                                          Button(
-                                            background: AppColors.mainColor,
-                                            text: "Edit the task",
-                                            textColor: Colors.white,
+                                          SizedBox(height: 10),
+                                          InkWell(
+                                            onTap: () {
+                                              Get.off(()=>TaskDetail(id: myData[index]["id"].toString()),transition: Transition.zoom);
+                                            },
+                                            child: Button(
+                                                background:
+                                                AppColors.mainColor,
+                                                text: "Edit",
+                                                textColor: Colors.white),
                                           )
                                         ],
                                       ),

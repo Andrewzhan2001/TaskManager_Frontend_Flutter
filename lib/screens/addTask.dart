@@ -87,7 +87,7 @@ class _AddTaskState extends State<AddTask> {
                 GestureDetector(
                   onTap: () {
                     if (validation()) {
-                      Get.find<DataController>().postData(nameController.text.trim(),detailController.text.trim());
+                      Get.find<DataController>().createTask(nameController.text.trim(),detailController.text.trim());
                       Get.to(() => AllTask(),transition: Transition.circularReveal);
                     }
                   },
