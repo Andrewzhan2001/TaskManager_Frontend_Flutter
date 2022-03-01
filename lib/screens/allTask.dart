@@ -89,75 +89,76 @@ class _AllTaskState extends State<AllTask> {
           ),
           Flexible(
               child: ListView.builder(
-                  itemCount: myData.length,
-                  itemBuilder: (context, index) {
-                    return Dismissible(
-                      background: leftIcon,
-                      secondaryBackground: rightIcon,
-                      onDismissed: (DismissDirection direction) {
-                        print("after dismiss");
-                      },
-                      confirmDismiss: (DismissDirection direction) async {
-                        if (direction == DismissDirection.startToEnd) { // for left to right
-                          showModalBottomSheet(
-                              barrierColor: Colors.transparent,
-                              backgroundColor: Colors.transparent,
-                              context: context,
-                              builder: (_) {
-                                return Container(
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xFF2e3253).withOpacity(0.4),
-                                        borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
+                itemCount: myData.length,
+                itemBuilder: (context, index) {
+                  return Dismissible(
+                    background: leftIcon,
+                    secondaryBackground: rightIcon,
+                    onDismissed: (DismissDirection direction) {
+                      print("after dismiss");
+                    },
+                    confirmDismiss: (DismissDirection direction) async {
+                      if (direction == DismissDirection.startToEnd) { // for left to right
+                        showModalBottomSheet(
+                          barrierColor: Colors.transparent,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (_) {
+                            return Container(
+                              height: 200,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFF2e3253).withOpacity(0.4),
+                                  borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 20, right: 20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Get.back();
+                                        Get.to(()=>TaskDetail(id: myData[index]["id"].toString()),transition: Transition.zoom);
+                                      },
+                                      child: Button(
+                                        background:
+                                        AppColors.mainColor,
+                                        text: "View",
+                                        textColor: Colors.white),
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 20, right: 20),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              Get.back();
-                                              Get.to(()=>TaskDetail(id: myData[index]["id"].toString()),transition: Transition.zoom);
-                                            },
-                                            child: Button(
-                                                background:
-                                                AppColors.mainColor,
-                                                text: "View",
-                                                textColor: Colors.white),
-                                          ),
-                                          SizedBox(height: 10),
-                                          InkWell(
-                                            onTap: () {
-                                              Get.back();
-                                              Get.to(()=>EditTask(id: myData[index]["id"].toString()),transition: Transition.zoom);
-                                            },
-                                            child: Button(
-                                                background:
-                                                AppColors.mainColor,
-                                                text: "Edit",
-                                                textColor: Colors.white),
-                                          )
-                                        ],
-                                      ),
-                                    ));
-                              });
-                          return false;
-                        } else {
-                          return Future.delayed(const Duration(seconds: 1), () => direction == DismissDirection.endToStart);
-                        }
-                      },
-                      key: ObjectKey(index),
-                      child: Container(
-                        margin: const EdgeInsets.only(
-                            left: 20, right: 20, bottom: 10),
-                        child: Task(
-                          text: myData[index]["taskName"],
-                          color: Colors.blueGrey,
-                        ),
+                                    SizedBox(height: 10),
+                                    InkWell(
+                                      onTap: () {
+                                        Get.back();
+                                        Get.to(()=>EditTask(id: myData[index]["id"].toString()),transition: Transition.zoom);
+                                      },
+                                      child: Button(
+                                        background:
+                                        AppColors.mainColor,
+                                        text: "Edit",
+                                        textColor: Colors.white),
+                                    )
+                                  ],
+                                ),
+                              ));
+                            });
+                        return false;
+                      } else {
+                        Get.find<DataController>().deleteTask(myData[index]["id"].toString());
+                        return Future.delayed(const Duration(seconds: 1), () => direction == DismissDirection.endToStart);
+                      }
+                    },
+                    key: ObjectKey(index),
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                        left: 20, right: 20, bottom: 10),
+                      child: Task(
+                        text: myData[index]["taskName"],
+                        color: Colors.blueGrey,
                       ),
-                    );
-                  }))
+                    ),
+                  );
+                }))
       ]),
     );
   }

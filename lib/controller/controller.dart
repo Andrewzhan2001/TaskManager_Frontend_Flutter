@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:taskmanager/component/errorMessage.dart';
 import 'package:taskmanager/service/service.dart';
 import 'package:taskmanager/utils/constants.dart';
 
@@ -56,5 +57,19 @@ class DataController extends GetxController {
     } else {
       print("Task add failed");
     }
+  }
+  Future<void> deleteTask(String id) async {
+    update();
+    Response response =
+    await service.deleteData("${appConstants.deleteTask}"+id);
+    if (response.statusCode == 200) {
+      update();
+      Message.taskError("Successful", "Data Deleted Successfully");
+    } else {
+      Message.taskError("Unsuccessful", "Error in deleting data");
+    }
+    Future.delayed(Duration(seconds: 1), () {
+      update();
+    });
   }
 }

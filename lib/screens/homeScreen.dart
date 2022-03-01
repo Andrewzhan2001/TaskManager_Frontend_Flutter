@@ -4,6 +4,7 @@ import 'package:taskmanager/screens/addTask.dart';
 import 'package:taskmanager/screens/allTask.dart';
 import 'package:taskmanager/utils/appColors.dart';
 import 'package:get/get.dart';
+import 'package:taskmanager/utils/routes.dart';
 class homeScreen extends StatefulWidget {
   const homeScreen({Key? key}) : super(key: key);
 
@@ -50,18 +51,16 @@ class _homeScreenState extends State<homeScreen> {
             SizedBox( height: MediaQuery.of(context).size.height / 2.5,),
             InkWell(
               onTap: () {
-                Get.to(() => AddTask(),
-                    transition: Transition.zoom,
-                    duration: Duration(milliseconds: 500));
+                // Get.to(() => AddTask(),transition: Transition.zoom,duration: Duration(milliseconds: 500));
+                Get.toNamed(Routes.AddTasks());
               },
               child: Button(background: AppColors.mainColor, text: "Add Task", textColor: Colors.white),
             ),
             SizedBox(height: 20),
             InkWell(
               onTap: () {
-                Get.to(() => AllTask(),
-                    transition: Transition.fade,
-                    duration: Duration(seconds: 1));
+                // Get.to(() => AllTask(), transition: Transition.fade, duration: Duration(seconds: 1));
+                Get.toNamed(Routes.AllTasks());
               },
               child: Button( background: Colors.white, text: "View all tasks ", textColor: AppColors.smallTextColor),
             )
