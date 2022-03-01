@@ -24,14 +24,14 @@ class _TaskDetailState extends State<TaskDetail> {
     return Scaffold(body: GetBuilder<DataController>(builder: (controller) {
       return Column(children: [
         Container(
-          padding: EdgeInsets.only(left: 20, top: 20),
+          padding: EdgeInsets.only(left: 20, top: 30),
           alignment: Alignment.topLeft,
           child: InkWell(
             onTap: () {
-              Get.off(()=> AllTask(), transition: Transition.fade);
+              Get.back();
             },
             child: Padding(
-              padding: const EdgeInsets.only(top: 10.0),
+              padding: const EdgeInsets.only(top: 20.0),
               child: Icon(
                 Icons.arrow_back,
                 color: AppColors.mainColor,

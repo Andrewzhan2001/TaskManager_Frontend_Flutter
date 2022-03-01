@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:taskmanager/component/button.dart';
 import 'package:taskmanager/component/task.dart';
 import 'package:taskmanager/controller/controller.dart';
+import 'package:taskmanager/screens/editTask.dart';
 import 'package:taskmanager/screens/taskDetail.dart';
 import 'package:taskmanager/utils/appColors.dart';
 
@@ -116,7 +117,8 @@ class _AllTaskState extends State<AllTask> {
                                         children: [
                                           InkWell(
                                             onTap: () {
-                                              Get.off(()=>TaskDetail(id: myData[index]["id"].toString()),transition: Transition.zoom);
+                                              Get.back();
+                                              Get.to(()=>TaskDetail(id: myData[index]["id"].toString()),transition: Transition.zoom);
                                             },
                                             child: Button(
                                                 background:
@@ -127,7 +129,8 @@ class _AllTaskState extends State<AllTask> {
                                           SizedBox(height: 10),
                                           InkWell(
                                             onTap: () {
-                                              Get.off(()=>TaskDetail(id: myData[index]["id"].toString()),transition: Transition.zoom);
+                                              Get.back();
+                                              Get.to(()=>EditTask(id: myData[index]["id"].toString()),transition: Transition.zoom);
                                             },
                                             child: Button(
                                                 background:

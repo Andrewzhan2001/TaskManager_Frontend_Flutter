@@ -8,7 +8,9 @@ import 'package:taskmanager/screens/allTask.dart';
 import 'package:taskmanager/utils/appColors.dart';
 
 class AddTask extends StatefulWidget {
-  const AddTask({Key? key}) : super(key: key);
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController detailController = TextEditingController();
+  AddTask({Key? key}) : super(key: key);
 
   @override
   State<AddTask> createState() => _AddTaskState();
@@ -17,24 +19,23 @@ class AddTask extends StatefulWidget {
 class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController detailController = TextEditingController();
+
 
     bool validation() {
-      if (nameController.text.trim() == '') {
+      if (widget.nameController.text.trim() == '') {
         Message.taskError("Task Title", "Please add your task title");
         return false;
-      } else if (detailController.text.trim() == '') {
+      } else if (widget.detailController.text.trim() == '') {
         Message.taskError(
             "Task detail", "Please add your task details");
         return false;
-      } else if (nameController.text.length < 10) {
+      } else if (widget.nameController.text.length < 5) {
         Message.taskError(
-            "Task Title", "Task title should have 10 or more characters");
+            "Task Title", "Task title should have 5 or more characters");
         return false;
-      } else if (detailController.text.length < 10) {
+      } else if (widget.detailController.text.length < 5) {
         Message.taskError(
-            "Task details", "Task details should have 10 or more characters");
+            "Task details", "Task details should have 5 or more characters");
         return false;
       }
       return true;
@@ -69,14 +70,14 @@ class _AddTaskState extends State<AddTask> {
             Column(
               children: [
                 InputField(
-                  textController: nameController,
+                  textController: widget.nameController,
                   hintText: "Task Title",
                   borderRadius: 30),
                 const SizedBox(
                   height: 20,
                 ),
                 InputField(
-                  textController: detailController,
+                  textController: widget.detailController,
                   hintText: "Task Details",
                   borderRadius: 15,
                   maxLines: 3,
@@ -87,8 +88,8 @@ class _AddTaskState extends State<AddTask> {
                 GestureDetector(
                   onTap: () {
                     if (validation()) {
-                      Get.find<DataController>().createTask(nameController.text.trim(),detailController.text.trim());
-                      Get.to(() => AllTask(),transition: Transition.circularReveal);
+                      Get.find<DataController>().createTask(widget.nameController.text.trim(),widget.detailController.text.trim());
+                      Get.off(() => AllTask(),transition: Transition.circularReveal);
                     }
                   },
                   child: Button(
