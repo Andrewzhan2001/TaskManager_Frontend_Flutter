@@ -14,7 +14,9 @@ class DataController extends GetxController {
   List<dynamic> get myData => _myData;
   Map<String, dynamic> _singleTask = {};
   Map<String, dynamic> get singleTask => _singleTask;
+
   Future<void> getAllTasks() async {
+    _isLoading = true;
     Response response = await service.getData(appConstants.getAllTasks);
     if (response.statusCode == 200) {
       _myData = response.body;
@@ -23,9 +25,11 @@ class DataController extends GetxController {
     } else {
       print("Did not get data from server");
     }
+    _isLoading = false;
   }
 
   Future<void> getTask(String id) async {
+    _isLoading = true;
     Response response = await service.getData("${appConstants.getTask}"+id);
     if (response.statusCode == 200) {
       _singleTask = jsonDecode(response.body);
@@ -33,6 +37,7 @@ class DataController extends GetxController {
     } else {
       print("Something wrong happen to this task");
     }
+    _isLoading = false;
   }
 
   Future<void> updateTask(String task, String taskDetail, String id) async {
@@ -45,6 +50,7 @@ class DataController extends GetxController {
     } else {
       print("Task update failed");
     }
+    _isLoading = false;
   }
 
   Future<void> createTask(String task, String taskDetail) async {
@@ -57,8 +63,10 @@ class DataController extends GetxController {
     } else {
       print("Task add failed");
     }
+    _isLoading = false;
   }
   Future<void> deleteTask(String id) async {
+    _isLoading = true;
     update();
     Response response =
     await service.deleteData("${appConstants.deleteTask}"+id);
@@ -69,6 +77,7 @@ class DataController extends GetxController {
       Message.taskError("Unsuccessful", "Error in deleting data");
     }
     Future.delayed(Duration(seconds: 1), () {
+      _isLoading = false;
       update();
     });
   }

@@ -6,6 +6,7 @@ import 'package:taskmanager/component/inputField.dart';
 import 'package:taskmanager/controller/controller.dart';
 import 'package:taskmanager/screens/allTask.dart';
 import 'package:taskmanager/utils/appColors.dart';
+import 'package:taskmanager/utils/routes.dart';
 
 class AddTask extends StatefulWidget {
   final TextEditingController nameController = TextEditingController();
@@ -89,7 +90,7 @@ class _AddTaskState extends State<AddTask> {
                   onTap: () {
                     if (validation()) {
                       Get.find<DataController>().createTask(widget.nameController.text.trim(),widget.detailController.text.trim());
-                      Get.off(() => AllTask(),transition: Transition.circularReveal);
+                      Get.offNamed(Routes.AllTasks());
                     }
                   },
                   child: Button(

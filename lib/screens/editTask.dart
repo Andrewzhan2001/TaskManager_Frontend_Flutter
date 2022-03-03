@@ -8,6 +8,7 @@ import 'package:taskmanager/component/inputField.dart';
 import 'package:taskmanager/controller/controller.dart';
 import 'package:taskmanager/screens/allTask.dart';
 import 'package:taskmanager/utils/appColors.dart';
+import 'package:taskmanager/utils/routes.dart';
 
 class EditTask extends StatefulWidget {
   final String id;
@@ -99,7 +100,7 @@ class _EditTaskState extends State<EditTask> {
                     if (_dataValidation()) {
                       Get.find<DataController>().updateTask(widget.nameController.text.trim(),widget.detailController.text.trim(),controller.singleTask["id"].toString());
                       Get.back();
-                      Get.off(() => AllTask(), transition: Transition.zoom);
+                      Get.offNamed(Routes.AllTasks());
                     }
                   },
                   child: Button(
