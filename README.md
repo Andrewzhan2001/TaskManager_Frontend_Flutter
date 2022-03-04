@@ -2,12 +2,12 @@
 
 ---
 
-<p align="center"> This is an Andriod & IOS app in Flutter and Dart
+<p align="center"> This is an Andriod & IOS app in Flutter and Dart using GO to make the backend server.
     <br> 
 </p>
 
 ## 📝 Note
-This is the project's frontend repository. For the backend repository in `GO`, check following [Link]() for the backend repository.
+This is the project's frontend repository. For the backend repository in `GO`, check following [Link](https://github.com/Andrewzhan2001/TaskManager_Backend_GO) for the backend repository.
 
 ## 🧐 Demo
 
