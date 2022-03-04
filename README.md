@@ -1,16 +1,31 @@
-# taskmanager
+<h3 align="center">Task Management App - Flutter</h3>
 
-A new Flutter project.
+---
 
-## Getting Started
+<p align="center"> This is an Andriod & IOS app in Flutter and Dart
+    <br> 
+</p>
 
-This project is a starting point for a Flutter application.
+## 📝 Note
+This is the project's frontend repository. For the backend repository in `GO`, check following [Link]() for the backend repository.
 
-A few resources to get you started if this is your first Flutter project:
+## 🧐 Demo
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## 🚀 Features
+
+Features include, 
+
+1. Adding task
+
+2. Remvoing task
+
+3. Editing task
+
+4. View all tasks
+
+5. View the detail of a single task
+   
+All Tasks' data are retrieved from backend server using REST API with library `GetX`.
+
