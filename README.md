@@ -13,6 +13,10 @@ This is the project's frontend repository. For the backend repository in `GO`, c
 
 
 
+https://user-images.githubusercontent.com/97903569/220139110-7ef7bd6e-3146-4ab5-9409-151125d3e2df.mp4
+
+
+
 ## 🚀 Features
 
 Features include, 
