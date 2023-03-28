@@ -23,7 +23,7 @@ Features include,
 
 1. Adding task
 
-2. Remvoing task
+2. Removing task
 
 3. Editing task
 
@@ -31,5 +31,5 @@ Features include,
 
 5. View the detail of a single task
    
-All Tasks' data are retrieved from backend server using REST API with library `GetX`.
+All Tasks' data are retrieved from the backend server using REST API with library `GetX`.
 
